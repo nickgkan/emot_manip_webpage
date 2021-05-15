@@ -144,17 +144,12 @@
 				<tr>
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">First Author</a></span>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Andy Fang</a></span>
 						</center>
 					</td>
 					<td align=center width=100px>
 						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Second Author</a></span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Third Author</a></span>
+							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Nikolaos Gkanatsios</a></span>
 						</center>
 					</td>
 				</tr>
@@ -201,7 +196,7 @@
 		<center><h1>Abstract</h1></center>
 		<tr>
 			<td>
-				This is my abstract.
+				The view of a painting arouses multiple emotions, different for each person. We explore the relation between objective visual cues and subjective affective experiences with the training of an expert model that is able to both classify and alter the emotional effect of visual artworks. First, we train a standard sentiment classifier in a multi-label fashion. Then, we gain insight by i) visualizing gradients to map the emotion back to image regions and ii) statistically analyzing humans' textual descriptions of their feelings about each painting. We discover that although the visual cues often focus on situations or facial expressions, people rely on memories and impression, the latter mostly activated by color patterns. Motivated by this analysis, we train an Energy-Based Model (EBM) to manipulate the emitted emotions of a painting. During training, our model learns both to apply color transformations to minimize the energy of the target class and to contrast images from different emotion classes. In inference, the EBM is given an image and a target emotion and iteratively updates the image to maximize the desired emotional effect. We demonstrate the effectiveness of our approach using absolute metrics, a human evaluation and a qualitative analysis.
 			<img src="https://latex.codecogs.com/svg.latex?p_{\theta}(\mathbf{x},&space;y)=\frac{\exp&space;\left(f_{\theta}(\mathbf{x})[y]\right)}{Z(\theta)}" title="p_{\theta}(\mathbf{x}, y)=\frac{\exp \left(f_{\theta}(\mathbf{x})[y]\right)}{Z(\theta)}" />
 			</td>
 		</tr>
@@ -225,6 +220,90 @@
 	</table>
 	<hr>
 
+	<hr>
+
+	<table align=center width=850px>
+		<center><h1>Introduction</h1></center>
+		<tr>
+			<td>
+				What do people feel when admiring an artwork? Are some pixels more attractive given the psychological status of a human? How can we edit an artwork to intensify a desired emotion? We address these questions from a computer vision perspective by learning to classify and manipulate the emotional effects of paintings. Our work steps towards bridging artificial and emotional intelligence and can have immediate application on assistive digital art. For example, designers could consult our emotion-aware model towards more appealing web pages, eye-capturing advertisements and school-book covers and art that could motivate kids to study and discuss. Another face of the same coin is emotion-based prediction: how would people react to an image, what actions could a painting inspire?
+				<br><br>
+				Reasoning about emotions directly from visual stimuli is a challenging task. First, emotions are subjective. For example, in Fig.~\ref{fig:intro}, there are diverse annotations for the same paintings. This can be attributed to the psychological status of humans, as well as their background, experiences and personality. Another challenge is focus: there are no ground-truth salient parts annotated, as is the situation in object detection for instance. In fact, in the view of a painting, humans may focus on objects, e.g. the ``priest'' and the ``table'' in Fig~\ref{fig:intro}, colors, background, e.g. ``sky ... getting darker'', or even memories, e.g. ``remind me of the fall''.
+				<br><br>
+				While emotion classification from images can be tackled as a multi-label problem due to co-existing labels, an important question is where this classifier should focus on. We attempt to answer this question by examining the classifier's gradients \cite{gradcam_iccv_2017} directly. We notice that, different from humans, typical classifiers \cite{ResNet_cvpr_2016} focus mostly on situations, expressions and objects in the foreground; no colors or memories. Thus, manipulating these paintings without any contraints, e.g. training a generative models from scratch, may get stuck in altering parts that are either hard to modify and still result in realistic images, e.g. facial expressions, or less salient for humans.
+				<br><br>
+				In this work we are mainly interested in three aspects: 1. train deep networks to classify emotions from paintings; 2. study where these networks ``look'' at to identify specific regions of the image that convey specific emotions; 3. alter the emotion of painting by learning to edit particular characteristics. To this end, we first finetune ResNet~\cite{ResNet_cvpr_2016} on our set of emotion classes in a multi-label scheme. Then, we employ Grad-CAM~\cite{gradcam_iccv_2017} to highlight the most salient image regions for any given emotion label. Lastly, we train an Energy-based Model~\cite{EBMclassifier_iclr_2020} (EBM) and use Langevin Dynamics~\cite{LangevinDynamics_icml_2011} to apply minimal color edits on the image and minimize an energy functional conditioned on the emotion. We experiment on the recently introduced ArtEmis dataset~\cite{achlioptas2021artemis}, where we evaluate qualitatively and quantitatively on the above setups. Our key contributions are a novel, color-conditioned art-emotion manipulation EBM, as well as the first qualitative analysis and interpretation of painting-to-emotion classifiers.
+				
+			</td>
+		</tr>
+	</table>
+	<br>
+
+
+	<table align=center width=850px>
+		<tr>
+			<td align=center width=850px>
+				<center>
+					<td><img class="round" style="width:850px" src="./resources/intro_fig_emot.png"/></td>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<table align=center width=850px>
+		<center><h1>Related work</h1></center>
+		<tr>
+			<td>
+				\textit{Sentiment analysis} has been a popular task in the natural language processing domain \cite{Medhat2014SentimentAA}, yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification~\cite{Mohammad2018WikiArtEA,Kim2018BuildingEM} or emotion-conditioned captioning~\cite{achlioptas2021artemis}. We are the first to explore emotion-conditioned editing of images, especially art.
+				<br><br>
+				\textit{Generative models}: On a technical aspect, our work lies close to style transferring~\cite{Karras2019ASG} and implicit conditional generation~\cite{Du2019ImplicitGA} with EBMs. However, current style transferring approaches attempt to change what is ``seen''. For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups \cite{Mordatch2018ConceptLW, Li2020EnergyBasedMF}, more rarely on real images \cite{Du2020ImprovedCD,Du2019ImplicitGA} and never on unconstrained images, such as paintings, that may not even respect physical laws.
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+
+	<table align=center width=850px>
+		<center><h1>Approach</h1></center>
+		<tr>
+			<td>
+				\textbf{Classification}: We build our classifier on ImageNet-pretrained ResNet~\cite{ResNet_cvpr_2016}. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
+				<br><br>
+				\textbf{Visualization} We use Grad-CAM~\cite{gradcam_iccv_2017} to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
+				<br><br>
+				\textbf{Emotion manipulation} Energy-Based Models (EBMs) are a family of networks that output a scalar energy value $E_{\theta}(x)$ which measures the combatibility of the input $x$ and some constraints. Inspired by physics, where stable systems lie on smooth local optima of an energy function, the smaller the EBM output, the better the input satisfies the imposed constraints. During training, the EBM learns the positive data distribution $p_{\theta}(x) \propto e^{-E_{\theta}(x)}$ by minimizing the loss
+				\begin{equation}\label{eq1}
+					\mathcal{L} = \mathbb{E}_{x^{+} \sim p_D}E_{\theta}(x^{+}) - \mathbb{E}_{x^{-} \sim p_{\theta}}E_{\theta}(x^{-})
+				\end{equation}
+				where $x^{+}$ a positive sample for the true data distribution $p_D$ and $x^{-}$ a negative sample drawn from the learned distribution $p_{\theta}$. To sample from $p_{\theta}$, we start from an initial estimate $x^0$ and refine using Langevin Dynamics~\cite{LangevinDynamics_icml_2011}:
+				\begin{equation}\label{eq2}
+					x^{k+1} = x^{k} -\lambda \nabla_x E_{\theta}(x^{k})
+				\end{equation}
+				After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic ``negatives'' using Eq.~\ref{eq2}.
+				<br><br>
+				To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations, the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq.~\ref{eq1}. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
+
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<hr>
+
+	<table align=center width=850px>
+		<center><h1>Results</h1></center>
+		<tr>
+			<td>
+				We train and evaluate our approach on ArtEmis dataset~\cite{achlioptas2021artemis}. ArtEmis offers annotations for emotions, artists, styles and human users' comments about each image. We use all 10 emotion types in our classification setup. We plot their distribution in Fig.~\ref{fig:artemis} We also use comments to mine common patterns from text. Specifically, as we show in Fig.~\ref{fig:artemis}, for all classes, humans often use color language to describe their emotions, e.g. ``the colors are very awe-inspiring''.
+
+			</td>
+		</tr>
+	</table>
+	<br>
+
 	<center><h1>Code</h1></center>
 
 	<table align=center width=420px>
@@ -235,11 +314,11 @@
 			</tr>
 		</center>
 	</table>
-	<table align=center width=400px>
+	<table align=center width=850px>
 		<tr>
-			<td align=center width=400px>
+			<td align=center width=850px>
 				<center>
-					<td><img class="round" style="width:450px" src="./resources/method_diagram.png"/></td>
+					<td><img class="round" style="width:850px" src="./resources/artemis.png"/></td>
 				</center>
 			</td>
 		</tr>
@@ -283,6 +362,15 @@
 			<td><span style="font-size:14pt"><center>
 				<a href="./resources/bibtex.txt">[Bibtex]</a>
 			</center></td>
+		</tr>
+	</table>
+	<table align=center width=850px>
+		<tr>
+			<td align=center width=850px>
+				<center>
+					<td><img class="round" style="width:850px" src="./resources/tmp.png"/></td>
+				</center>
+			</td>
 		</tr>
 	</table>
 
