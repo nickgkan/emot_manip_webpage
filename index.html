@@ -1,4 +1,10 @@
 <script src="http://www.google.com/jsapi" type="text/javascript"></script> 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
 <script type="text/javascript">google.load("jquery", "1.3.2");</script>
 
 <style type="text/css">
@@ -8,11 +14,9 @@
 		font-size:18px;
 		margin-left: auto;
 		margin-right: auto;
-		width: 1100px;
-	}
-	
+		width: 1250px;
+	}	
 	h1 {
-		font-size:32px;
 		font-weight:300;
 	}
 	
@@ -42,7 +46,7 @@
 	}
 	
 	img.rounded {
-		border: 1px solid #eeeeee;
+		border: 0px solid #eeeeee;
 		border-radius: 10px ;
 		-moz-border-radius: 10px ;
 		-webkit-border-radius: 10px ;
@@ -65,25 +69,17 @@
 	
 	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
 		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		15px 15px 0 0px #fff, /* The fourth layer */
-		15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		20px 20px 0 0px #fff, /* The fifth layer */
-		20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		25px 25px 0 0px #fff, /* The fifth layer */
-		25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
-
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
 		margin-left: 10px;
 		margin-right: 45px;
 	}
@@ -91,11 +87,11 @@
 
 	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
 		box-shadow:
-		0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		5px 5px 0 0px #fff, /* The second layer */
-		5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		10px 10px 0 0px #fff, /* The third layer */
-		10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
 		margin-top: 5px;
 		margin-left: 10px;
 		margin-right: 30px;
@@ -104,8 +100,8 @@
 	
 	.vert-cent {
 		position: relative;
-		top: 50%;
-		transform: translateY(-50%);
+	    top: 50%;
+	    transform: translateY(-50%);
 	}
 	
 	hr
@@ -117,278 +113,382 @@
 </style>
 
 <html>
-<head>
-	<title>This is my paper title</title>
-	<meta property="og:image" content="Path to my teaser.png"/> <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/ if you update and want to force Facebook to rescrape. -->
-	<meta property="og:title" content="Creative and Descriptive Paper Title." />
-	<meta property="og:description" content="Paper description." />
+  <head>
+		<title>Predicting and Manipulating the Emotional Effect of Visual Art</title>
+		<meta property="og:image" content="https://richzhang.github.io/ideepcolor/index_files/teaser_v3.jpg"/>
+		<meta property="og:title" content="Real-Time User-Guided Image Colorization with Learned Deep Priors. In SIGGRAPH, 2017." />
+  </head>
 
-	<!-- Get from Google Analytics -->
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src=""></script> 
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+  <body>
+    <br>
+          <center>
+          	<span style="font-size:42px">Predicting and Manipulating the Emotional Effect of Visual Art</span><br>
+	  		  <table align=center width=950px>
+	  		  <!-- <table align=center width=540px> -->
+	  			  <tr>
+	  	              <td align=center width=140px>
+	  					<center>
+	  						<span style="font-size:18px"><a href="https://richzhang.github.io/">Andy Fang</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=140px>
+	  					<center>
+	  						<span style="font-size:18px"><a href="https://www.cs.cmu.edu/~junyanz/">Nikolaos Gkanatsios</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  			  </tr>
+			  </table>
+          	<!-- <span style="font-size:16px">(*indicates equal contribution)</span><br> -->
+          	<span style="font-size:18px"><b>Carnegie Mellon University</b></span>
+	  		  <table align=center width=900px>
+	  			  <tr>
+	  	              <td align=center width=240px>
+	  					<center>
+	  						<span style="font-size:22px">Code <a href='https://github.com/junyanz/interactive-deep-colorization'> [GitHub]</a> <a href='https://github.com/richzhang/colorization-pytorch'> [Training]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=275px>
+	  					<center>
+	  						<span style="font-size:22px">SIGGRAPH 2017<a href='https://arxiv.org/abs/1705.02999'> [Paper]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=200px>
+	  					<center>
+	  						<span style="font-size:22px">Conference<a href='https://www.youtube.com/watch?v=rp5LUSbdsys'> [Talk]</a></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=150px>
+	  					<center>
+	  						<span style="font-size:22px">Slides<a href='https://www.dropbox.com/s/urmifx558nw0ogi/release.pptx?dl=0'> [ppt]</a></span>
+		  		  		</center>
+		  		  	  </td>
+			  </table>
+          </center>
 
-		gtag('config', 'UA-75863369-6');
-	</script>
-</head>
-
-<body>
-	<br>
-	<center>
-		<span style="font-size:36px">Creative and Descriptive Paper Title</span>
-		<table align=center width=600px>
-			<table align=center width=600px>
-				<tr>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Andy Fang</a></span>
-						</center>
-					</td>
-					<td align=center width=100px>
-						<center>
-							<span style="font-size:24px"><a href="https://en.wikipedia.org/wiki/James_J._Gibson">Nikolaos Gkanatsios</a></span>
-						</center>
-					</td>
-				</tr>
-			</table>
-			<table align=center width=250px>
-				<tr>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href=''>[Paper]</a></span>
-						</center>
-					</td>
-					<td align=center width=120px>
-						<center>
-							<span style="font-size:24px"><a href='https://github.com/richzhang/webpage-template'>[GitHub]</a></span><br>
-						</center>
-					</td>
-				</tr>
-			</table>
-		</table>
-	</center>
-
-	<center>
-		<table align=center width=850px>
-			<tr>
-				<td width=260px>
-					<center>
-						<img class="round" style="width:500px" src="./resources/teaser.png"/>
+  		  <table align=center width=900px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<img class="rounded" src = "./index_files/teaser_v3.jpg" height="275px"></img>
+  	                	<br>
 					</center>
-				</td>
-			</tr>
+  	              </td>
+  	              </tr>
+  	              </table>
+
+  		  <br>
+		  <hr>
+
+  		  <table align=center width=900px>
+	  		 	<center><h1>Abstract</h1></center>
+                   The view of a painting arouses multiple emotions, different for each person. We explore the relation between objective visual cues and subjective affective experiences with the training of an expert model that is able to both classify and alter the emotional effect of visual artworks. First, we train a standard sentiment classifier in a multi-label fashion. Then, we gain insight by i) visualizing gradients to map the emotion back to image regions and ii) statistically analyzing humans' textual descriptions of their feelings about each painting. We discover that although the visual cues often focus on situations or facial expressions, people rely on memories and impression, the latter mostly activated by color patterns. Motivated by this analysis, we train an Energy-Based Model (EBM) to manipulate the emitted emotions of a painting. During training, our model learns both to apply color transformations to minimize the energy of the target class and to contrast images from different emotion classes. In inference, the EBM is given an image and a target emotion and iteratively updates the image to maximize the desired emotional effect. We demonstrate the effectiveness of our approach using absolute metrics, a human evaluation and a qualitative analysis.
+                   <br>
+		  <hr>
+
+  		  <table align=center width=900px>
+	  		 	<center><h1>Demo Video</h1></center>
+  			  <tr>
+<!--   	              <td width=400px>
+  					<center>
+  	                	<img class="rounded" src = "./index_files/teaser_v3.jpg" height="275px"></img>
+  	                	<br>
+					</center>
+  	              </td> -->
+		  		  <table align=center width=600px>
+		  		    <tr>
+		              <td align=center width=600px>
+						<iframe width="800" height="450" src="https://www.youtube.com/embed/eL5ilZgM89Q" frameborder="0" allowfullscreen></iframe>
+					  </td>
+					</tr>
+				  </table>
+				<br>
+                </tr>
+  		  </table>
+
+        <center><a href="https://www.dropbox.com/s/mfi66auuv7qzyx0/iColor_release.mp4?dl=0">mp4</a></center>
+  		  <br>
+		  <hr>
+
+        <table align=center width=900px>
+            <center><h1>Introduction</h1></center>
+            What do people feel when admiring an artwork? Are some pixels more attractive given the psychological status of a human? How can we edit an artwork to intensify a desired emotion? We address these questions from a computer vision perspective by learning to classify and manipulate the emotional effects of paintings. Our work steps towards bridging artificial and emotional intelligence and can have immediate application on assistive digital art. For example, designers could consult our emotion-aware model towards more appealing web pages, eye-capturing advertisements and school-book covers and art that could motivate kids to study and discuss. Another face of the same coin is emotion-based prediction: how would people react to an image, what actions could a painting inspire?
+            <br><br>
+            Reasoning about emotions directly from visual stimuli is a challenging task. First, emotions are subjective. For example, in Fig. 1, there are diverse annotations for the same paintings. This can be attributed to the psychological status of humans, as well as their background, experiences and personality. Another challenge is focus: there are no ground-truth salient parts annotated, as is the situation in object detection for instance. In fact, in the view of a painting, humans may focus on objects, e.g. the ``priest'' and the ``table'' in Fig 1, colors, background, e.g. ``sky ... getting darker'', or even memories, e.g. ``remind me of the fall''.
+            <br><br>
+            While emotion classification from images can be tackled as a multi-label problem due to co-existing labels, an important question is where this classifier should focus on. We attempt to answer this question by examining the classifier's gradients \cite{gradcam_iccv_2017} directly. We notice that, different from humans, typical classifiers \cite{ResNet_cvpr_2016} focus mostly on situations, expressions and objects in the foreground; no colors or memories. Thus, manipulating these paintings without any contraints, e.g. training a generative models from scratch, may get stuck in altering parts that are either hard to modify and still result in realistic images, e.g. facial expressions, or less salient for humans.
+            <br><br>
+            In this work we are mainly interested in three aspects: 1. train deep networks to classify emotions from paintings; 2. study where these networks ``look'' at to identify specific regions of the image that convey specific emotions; 3. alter the emotion of painting by learning to edit particular characteristics. To this end, we first finetune ResNet~\cite{ResNet_cvpr_2016} on our set of emotion classes in a multi-label scheme. Then, we employ Grad-CAM~\cite{gradcam_iccv_2017} to highlight the most salient image regions for any given emotion label. Lastly, we train an Energy-based Model~\cite{EBMclassifier_iclr_2020} (EBM) and use Langevin Dynamics~\cite{LangevinDynamics_icml_2011} to apply minimal color edits on the image and minimize an energy functional conditioned on the emotion. We experiment on the recently introduced ArtEmis dataset~\cite{achlioptas2021artemis}, where we evaluate qualitatively and quantitatively on the above setups. Our key contributions are a novel, color-conditioned art-emotion manipulation EBM, as well as the first qualitative analysis and interpretation of painting-to-emotion classifiers.
+            <br><br>
+            <table align=center width=1250px>
+                <tr>
+                    <td align=center width=1250px>
+                        <center>
+                            <td><img class="round" style="width:1250px" src="./resources/intro_fig_emot.png"/></td>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+            <table align=center width=1250px>
+                <center>
+                    <tr>
+                        <td>
+                            Figure 1: Emotion classification from paintings is highly subjective. Different people focus on diverse details of the painting and absorb varying emotions. A common thing many people focus on is color.
+                        </td>
+                    </tr>
+                </center>
+            </table>
+        <hr>
+
+        <table align=center width=900px>
+            <center><h1>Related work</h1></center>
+            <b>Sentiment analysis</b> has been a popular task in the natural language processing domain \cite{Medhat2014SentimentAA}, yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification~\cite{Mohammad2018WikiArtEA,Kim2018BuildingEM} or emotion-conditioned captioning~\cite{achlioptas2021artemis}. We are the first to explore emotion-conditioned editing of images, especially art.
+            <br><br>
+            <b>Generative models</b>: On a technical aspect, our work lies close to style transferring~\cite{Karras2019ASG} and implicit conditional generation~\cite{Du2019ImplicitGA} with EBMs. However, current style transferring approaches attempt to change what is ``seen''. For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups \cite{Mordatch2018ConceptLW, Li2020EnergyBasedMF}, more rarely on real images \cite{Du2020ImprovedCD,Du2019ImplicitGA} and never on unconstrained images, such as paintings, that may not even respect physical laws.
 		</table>
-		<table align=center width=850px>
-			<tr>
-				<td>
-					This was a template originally made for <a href="http://richzhang.github.io/colorization/">Colorful Image Colorization</a>. The code can be found in this <a href="https://github.com/richzhang/webpage-template">repository</a>.
-				</td>
+        <hr>
+
+        <table align=center width=1250px>
+            <tr>
+                <td align=center width=1250px>
+                    <center>
+                        <td><img class="round" style="width:1250px" src="./resources/artemis.png"/></td>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table align=center width=1250px>
+            <center>
+                <tr>
+                    <td>
+                        Figure 2: <b>Left</b>: Class distribution on ArtEmis dataset~\cite{achlioptas2021artemis}. <b>Right</b>: Usage of color language per emotion on the same dataset.
+                    </td>
+                </tr>
+            </center>
+        </table>
+
+        <table align=center width=900px>
+            <center><h1>Approach</h1></center>
+            <b>Classification</b>: We build our classifier on ImageNet-pretrained ResNet~\cite{ResNet_cvpr_2016}. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
+            <br><br>
+            <b>Visualization</b> We use Grad-CAM~\cite{gradcam_iccv_2017} to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
+            <br><br>
+            <b>Emotion manipulation</b> Energy-Based Models (EBMs) are a family of networks that output a scalar energy value $E_{\theta}(x)$ which measures the combatibility of the input $x$ and some constraints. Inspired by physics, where stable systems lie on smooth local optima of an energy function, the smaller the EBM output, the better the input satisfies the imposed constraints. During training, the EBM learns the positive data distribution $p_{\theta}(x) \propto e^{-E_{\theta}(x)}$ by minimizing the loss
+            \begin{equation}
+                \mathcal{L} = \mathbb{E}_{x^{+} \sim p_D}E_{\theta}(x^{+}) - \mathbb{E}_{x^{-} \sim p_{\theta}}E_{\theta}(x^{-})
+            \end{equation}
+            where $x^{+}$ a positive sample for the true data distribution $p_D$ and $x^{-}$ a negative sample drawn from the learned distribution $p_{\theta}$. To sample from $p_{\theta}$, we start from an initial estimate $x^0$ and refine using Langevin Dynamics~\cite{LangevinDynamics_icml_2011}:
+            \begin{equation}
+                x^{k+1} = x^{k} -\lambda \nabla_x E_{\theta}(x^{k})
+            \end{equation}
+            After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic ``negatives'' using Eq. 2.
+            <br><br>
+            To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations, the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq. 1. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
+
+        <hr>
+
+ 		<center><h1>Results on Legacy Photos</h1></center>
+
+		We trained our system on 1.3M color photos, which were made grayscale "synthetically" (by removing the color components). Here, we show some examples on <i>legacy</i> grayscale photographs. This is Figure 10 in our full paper.
+
+		<br>
+  		  <table align=center width=600px>
+  		    <tr>
+              <td align=center width=600px>
+        		<!-- <a href="./index_files/legacy_v4.jpg"><img class="rounded"  src = "./index_files/legacy_v4_small.jpg" width = "800px"></a><br> -->
+        		<a href="http://colorization.eecs.berkeley.edu/siggraph/legacy_photos/"><img class="rounded"  src = "./index_files/legacy_v4_small.jpg" width = "800px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
 			</tr>
+  			  <!-- <tr> -->
+  	              <td align=center width=600px>
+  					<center>
+  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/legacy_photos/'>Selected Legacy Photos</a></span>
+	  		  		</center>
+	  		  	  </td>
+  		  	  <!-- </tr> -->
+		  </table>
+
+		<br>
+		<hr>
+
+ 		<center><h1>Additional Results</h1></center>
+
+ 		We show all of the results from our user study. Each user spent just 1 minute on each image. Each of the 28 users was given minimal training (short 2 minute explanation, and a few questions), and given 10 images to colorize. We show all 280 examples in the link below.
+
+ 		This is an extension of Figures 4 & 5 of our paper. Please see Section 4.2 of our paper for additional details.
+
+  		  <table align=center width=600px>
+  		    <tr>
+              <td align=center width=600px>
+        		<a href="http://colorization.eecs.berkeley.edu/siggraph/user_study/"><img class="rounded"  src = "./index_files/imagenet_showcase_small.jpg" width = "800px"></a><br>
+        		<!-- <a href="./index_files/imagenet_showcase.jpg"><img class="rounded"  src = "./index_files/imagenet_showcase_small.jpg" width = "800px"></a><br> -->
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  			  <tr>
+  	              <td align=center width=600px>
+  					<center>
+  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/user_study/'> Full User Study Results</a></span>
+	  		  		</center>
+	  		  	  </td>
+  		  	  </tr>
+		  </table>
+		<br>
+
+ 		We show additional examples of our network incorporating global histogram information. Please see Sections 3.3 and 4.4 for additional details. This is an extension of Figure 9 in our paper.
+
+  		  <table align=center width=600px>
+  		    <tr>
+              <td align=center width=600px>
+        		<!-- <a href="./index_files/lab_all_figures45k.jpg"><img class="rounded" src = "./index_files/lab_all_figures45k_small.jpg" width = "800px"></a><br> -->
+        		<a href="http://colorization.eecs.berkeley.edu/siggraph/global_transfer/"><img class="rounded" src = "./index_files/lab_all_figures45k_small.jpg" width = "800px"></a><br>
+				<span style="font-size:16px"></span>
+			  </td>
+			</tr>
+  			  <tr>
+  	              <td align=center width=600px>
+  					<center>
+  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/global_transfer/'>Random Histogram Transfer Results</a></span>
+	  		  		</center>
+	  		  	  </td>
+  		  	  </tr>
+		  </table>
+		<br>
+
+<!--   		  <table align=center width=600px>
+  		  	<tr>
+  	              <td align=center width=300px>
+  					<center>
+  						<span style="font-size:22px"><a href='http://colorization.eecs.berkeley.edu/siggraph/global_transfer/'>Histogram Transfer Results</a></span>
+	  		  		</center>
+	  		  	  </td>
+	  		</tr>
+		  </table>
+ -->
+		  <hr>
+
+ 		<center><h1>Try the network</h1></center>
+		  <!-- The GitHub page has scripts for fetching our model, and a slightly modified version of Caffe which does color pre-processing (if so desired). We recommend going to the <a href='https://github.com/richzhang/splitbrainauto'>GitHub</a> page and following instructions in the readme. -->
+
+  		  <table align=center width=900px>
+  			  <tr>
+  	                <td align=center width=900px>
+  					<center>
+						  <td><a href='https://github.com/junyanz/interactive-deep-colorization'><img class="round" style="width:900px" src="./index_files/network4.jpg"/></a></td>
+	  		  		</center>
+	  		  		</td>
+			  </tr>
+		  </table>
+
+  		  <table align=center width=800px>
+			  <tr><center>
+				<span style="font-size:28px">GitHub <a href='https://github.com/junyanz/interactive-deep-colorization'>[Official Repository]</a>
+				<span style="font-size:28px"><a href='https://github.com/richzhang/colorization-pytorch'>[PyTorch Training]</a>
+			  <br>
+			  </center></tr>
+			  <!-- <tr><center> -->
+ 			<!-- <span style="font-size:28px"><a>&nbsp;Model: [Prototxt] Weights: [Unrescaled] [Rescaled]</a></span> -->
+			  <!-- </center></tr> -->
+		  </table>
+
+  		  <br>
+		  <hr>
+
+  		  <table align=center width=540 px>
+	 		<center><h1>Paper</h1></center>
+  			  <tr>
+				  <td><a href="https://arxiv.org/abs/1705.02999"><img class="layered-paper-big" style="height:175px" src="./index_files/page1.png"/></a></td>
+				  <td><span style="font-size:12pt">R. Zhang*, J.Y. Zhu*, P. Isola, <br> X. Geng, A. S. Lin, T. Yu, A. A. Efros.</span><br>
+				  <b><span style="font-size:12pt">Real-Time User-Guided Image Colorization with Learned Deep Priors.</b></span><br>
+				  <span style="font-size:12pt">In SIGGRAPH, 2017. (hosted on <a href="https://arxiv.org/abs/1705.02999">arXiv</a>)</span></a>
+				  <span style="font-size:4pt"><a href=""><br></a>
+				  </span>
+				  </td>
+  	              </td>
+              </tr>
+  		  </table>
+		  <br>
+
+		  <table align=center width=600px>
+			  <tr>
+				  <td><span style="font-size:24pt"><center>
+				  	<a href="./index_files/bibtex_siggraph2017.txt">[Bibtex]</a>
+  	              </center></td>
+              </tr>
+  		  </table>
+
+  		  <br>
+		  <hr>
+		  	
+  		  <table align=center width=1100px>
+  			  <tr>
+  	              <td width=400px>
+  					<left>
+	  		  <center><h1>Related and Concurrent Work</h1></center>
+	  		  		<span style="font-size:24px"><center><b> Automatic Colorization with Deep Networks </b> </center></span><br>
+
+					R. Zhang, P. Isola, A. A. Efros. <b>Colorful Image Colorization.</b> In ECCV, 2016. <a href="https://arxiv.org/abs/1603.08511">[PDF]</a><a href="http://richzhang.github.io/colorization/"> [Website]</a><a href="http://demos.algorithmia.com/colorize-photos/"> [Demo]</a></br>
+
+					<br>
+
+					G. Larsson, M. Maire, and G. Shakhnarovich. <b>Learning Representations for Automatic Colorization.</b> In ECCV, 2016. <a href="http://arxiv.org/pdf/1603.06668.pdf"> [PDF]</a><a href="http://people.cs.uchicago.edu/~larsson/colorization/"> [Website]</a></br>
+
+					<br>
+
+					S. Iizuka, E. Simo-Serra, and H. Ishikawa. <b>Let there be Color!: Joint End-to-end Learning of Global and Local Image Priors for Automatic Image Colorization with Simultaneous Classification.</b> In SIGGRAPH, 2016. <a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf"> [PDF]<a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/"> [Website]</a></a></br>
+
+					<br>
+
+	  		  		<span style="font-size:24px"><center><b> User Interaction with Deep Networks </b> </center></span><br>
+
+					P. Isola, J.Y. Zhu, T. Zhou, A. A. Efros. <b>Image to Image Translation with Conditional Adversarial Networks.</b> In CVPR, 2017. <a href="https://arxiv.org/pdf/1611.07004.pdf"> [PDF]</a><a href="https://phillipi.github.io/pix2pix/"> [Website]</a><a href="https://affinelayer.com/pixsrv/"> [Demo]</a></br>
+
+					<br>
+
+					P. Sangkloy, J. Lu, C. Fang, F. Yu, J. Hays. <b>Scribbler: Controlling Deep Image Synthesis with Sketch and Color.</b> In CVPR, 2017. <a href="http://scribbler.eye.gatech.edu/paper.pdf"> [PDF]</a><a href="http://scribbler.eye.gatech.edu/"> [Website]</a></br>
+
+					<br>
+
+					J.Y. Zhu, P. Krähenbühl, E. Shechtman, A. A. Efros. <b>Generative Visual Manipulation on the Natural Image Manifold.</b> In ECCV, 2016. <a href="https://arxiv.org/pdf/1609.03552.pdf"> [PDF]</a><a href="http://people.eecs.berkeley.edu/~junyanz/projects/gvm/index.html"> [Website]</a></br>
+
+					<br>
+
+					K. Frans. <b>Outline Colorization through Tandem Adversarial Networks.</b> In Arxiv, 2017. <a href="https://arxiv.org/abs/1704.08834">[PDF]</a><a href="http://color.kvfrans.com/"> [Demo]</a></br>
+
+					<br>
+
+					Preferred Networks, Inc. <b>PaintsChainer.</b><a href="https://paintschainer.preferred.tech/"> [Demo]</a>
+
+			</left>
+		</td>
+			 </tr>
 		</table>
-	</center>
+		<hr>
 
-	<hr>
+  		  <table align=center width=1100px>
+  			  <tr>
+  	              <td width=400px>
+  					<left>
+	  		  <center><h1>Acknowledgements</h1></center>
+				We thank members of the Berkeley Artificial Intelligence Research Lab for helpful discussions. We also thank the participants in our user study, along with Aditya Deshpande and Gustav Larsson for providing images for comparison. This work has been supported, in part, by NSF SMA-1514512, a Google Grant, BAIR, and a hardware donation by NVIDIA.
+			</left>
+		</td>
+			 </tr>
+		</table>
 
-	<table align=center width=850px>
-		<center><h1>Abstract</h1></center>
-		<tr>
-			<td>
-				The view of a painting arouses multiple emotions, different for each person. We explore the relation between objective visual cues and subjective affective experiences with the training of an expert model that is able to both classify and alter the emotional effect of visual artworks. First, we train a standard sentiment classifier in a multi-label fashion. Then, we gain insight by i) visualizing gradients to map the emotion back to image regions and ii) statistically analyzing humans' textual descriptions of their feelings about each painting. We discover that although the visual cues often focus on situations or facial expressions, people rely on memories and impression, the latter mostly activated by color patterns. Motivated by this analysis, we train an Energy-Based Model (EBM) to manipulate the emitted emotions of a painting. During training, our model learns both to apply color transformations to minimize the energy of the target class and to contrast images from different emotion classes. In inference, the EBM is given an image and a target emotion and iteratively updates the image to maximize the desired emotional effect. We demonstrate the effectiveness of our approach using absolute metrics, a human evaluation and a qualitative analysis.
-			<img src="https://latex.codecogs.com/svg.latex?p_{\theta}(\mathbf{x},&space;y)=\frac{\exp&space;\left(f_{\theta}(\mathbf{x})[y]\right)}{Z(\theta)}" title="p_{\theta}(\mathbf{x}, y)=\frac{\exp \left(f_{\theta}(\mathbf{x})[y]\right)}{Z(\theta)}" />
-			</td>
-		</tr>
-	</table>
-	<br>
+		<br><br>
 
-	<hr>
-	<center><h1>Talk</h1></center>
-	<p align="center">
-		<iframe width="660" height="395" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen align="center"></iframe>
-	</p>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	<table align=center width=800px>
-		<br>
-		<tr>
-			<center>
-				<span style="font-size:28px"><a href=''>[Slides]</a>
-				</span>
-			</center>
-		</tr>
-	</table>
-	<hr>
+  ga('create', 'UA-75863369-3', 'auto');
+  ga('send', 'pageview');
 
-	<hr>
-
-	<table align=center width=850px>
-		<center><h1>Introduction</h1></center>
-		<tr>
-			<td>
-				What do people feel when admiring an artwork? Are some pixels more attractive given the psychological status of a human? How can we edit an artwork to intensify a desired emotion? We address these questions from a computer vision perspective by learning to classify and manipulate the emotional effects of paintings. Our work steps towards bridging artificial and emotional intelligence and can have immediate application on assistive digital art. For example, designers could consult our emotion-aware model towards more appealing web pages, eye-capturing advertisements and school-book covers and art that could motivate kids to study and discuss. Another face of the same coin is emotion-based prediction: how would people react to an image, what actions could a painting inspire?
-				<br><br>
-				Reasoning about emotions directly from visual stimuli is a challenging task. First, emotions are subjective. For example, in Fig.~\ref{fig:intro}, there are diverse annotations for the same paintings. This can be attributed to the psychological status of humans, as well as their background, experiences and personality. Another challenge is focus: there are no ground-truth salient parts annotated, as is the situation in object detection for instance. In fact, in the view of a painting, humans may focus on objects, e.g. the ``priest'' and the ``table'' in Fig~\ref{fig:intro}, colors, background, e.g. ``sky ... getting darker'', or even memories, e.g. ``remind me of the fall''.
-				<br><br>
-				While emotion classification from images can be tackled as a multi-label problem due to co-existing labels, an important question is where this classifier should focus on. We attempt to answer this question by examining the classifier's gradients \cite{gradcam_iccv_2017} directly. We notice that, different from humans, typical classifiers \cite{ResNet_cvpr_2016} focus mostly on situations, expressions and objects in the foreground; no colors or memories. Thus, manipulating these paintings without any contraints, e.g. training a generative models from scratch, may get stuck in altering parts that are either hard to modify and still result in realistic images, e.g. facial expressions, or less salient for humans.
-				<br><br>
-				In this work we are mainly interested in three aspects: 1. train deep networks to classify emotions from paintings; 2. study where these networks ``look'' at to identify specific regions of the image that convey specific emotions; 3. alter the emotion of painting by learning to edit particular characteristics. To this end, we first finetune ResNet~\cite{ResNet_cvpr_2016} on our set of emotion classes in a multi-label scheme. Then, we employ Grad-CAM~\cite{gradcam_iccv_2017} to highlight the most salient image regions for any given emotion label. Lastly, we train an Energy-based Model~\cite{EBMclassifier_iclr_2020} (EBM) and use Langevin Dynamics~\cite{LangevinDynamics_icml_2011} to apply minimal color edits on the image and minimize an energy functional conditioned on the emotion. We experiment on the recently introduced ArtEmis dataset~\cite{achlioptas2021artemis}, where we evaluate qualitatively and quantitatively on the above setups. Our key contributions are a novel, color-conditioned art-emotion manipulation EBM, as well as the first qualitative analysis and interpretation of painting-to-emotion classifiers.
-				
-			</td>
-		</tr>
-	</table>
-	<br>
-
-
-	<table align=center width=850px>
-		<tr>
-			<td align=center width=850px>
-				<center>
-					<td><img class="round" style="width:850px" src="./resources/intro_fig_emot.png"/></td>
-				</center>
-			</td>
-		</tr>
-	</table>
-
-	<hr>
-
-	<table align=center width=850px>
-		<center><h1>Related work</h1></center>
-		<tr>
-			<td>
-				\textit{Sentiment analysis} has been a popular task in the natural language processing domain \cite{Medhat2014SentimentAA}, yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification~\cite{Mohammad2018WikiArtEA,Kim2018BuildingEM} or emotion-conditioned captioning~\cite{achlioptas2021artemis}. We are the first to explore emotion-conditioned editing of images, especially art.
-				<br><br>
-				\textit{Generative models}: On a technical aspect, our work lies close to style transferring~\cite{Karras2019ASG} and implicit conditional generation~\cite{Du2019ImplicitGA} with EBMs. However, current style transferring approaches attempt to change what is ``seen''. For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups \cite{Mordatch2018ConceptLW, Li2020EnergyBasedMF}, more rarely on real images \cite{Du2020ImprovedCD,Du2019ImplicitGA} and never on unconstrained images, such as paintings, that may not even respect physical laws.
-			</td>
-		</tr>
-	</table>
-	<br>
-
-	<hr>
-
-	<table align=center width=850px>
-		<center><h1>Approach</h1></center>
-		<tr>
-			<td>
-				\textbf{Classification}: We build our classifier on ImageNet-pretrained ResNet~\cite{ResNet_cvpr_2016}. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
-				<br><br>
-				\textbf{Visualization} We use Grad-CAM~\cite{gradcam_iccv_2017} to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
-				<br><br>
-				\textbf{Emotion manipulation} Energy-Based Models (EBMs) are a family of networks that output a scalar energy value $E_{\theta}(x)$ which measures the combatibility of the input $x$ and some constraints. Inspired by physics, where stable systems lie on smooth local optima of an energy function, the smaller the EBM output, the better the input satisfies the imposed constraints. During training, the EBM learns the positive data distribution $p_{\theta}(x) \propto e^{-E_{\theta}(x)}$ by minimizing the loss
-				\begin{equation}\label{eq1}
-					\mathcal{L} = \mathbb{E}_{x^{+} \sim p_D}E_{\theta}(x^{+}) - \mathbb{E}_{x^{-} \sim p_{\theta}}E_{\theta}(x^{-})
-				\end{equation}
-				where $x^{+}$ a positive sample for the true data distribution $p_D$ and $x^{-}$ a negative sample drawn from the learned distribution $p_{\theta}$. To sample from $p_{\theta}$, we start from an initial estimate $x^0$ and refine using Langevin Dynamics~\cite{LangevinDynamics_icml_2011}:
-				\begin{equation}\label{eq2}
-					x^{k+1} = x^{k} -\lambda \nabla_x E_{\theta}(x^{k})
-				\end{equation}
-				After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic ``negatives'' using Eq.~\ref{eq2}.
-				<br><br>
-				To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations, the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq.~\ref{eq1}. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
-
-			</td>
-		</tr>
-	</table>
-	<br>
-
-	<hr>
-
-	<table align=center width=850px>
-		<center><h1>Results</h1></center>
-		<tr>
-			<td>
-				We train and evaluate our approach on ArtEmis dataset~\cite{achlioptas2021artemis}. ArtEmis offers annotations for emotions, artists, styles and human users' comments about each image. We use all 10 emotion types in our classification setup. We plot their distribution in Fig.~\ref{fig:artemis} We also use comments to mine common patterns from text. Specifically, as we show in Fig.~\ref{fig:artemis}, for all classes, humans often use color language to describe their emotions, e.g. ``the colors are very awe-inspiring''.
-
-			</td>
-		</tr>
-	</table>
-	<br>
-
-	<center><h1>Code</h1></center>
-
-	<table align=center width=420px>
-		<center>
-			<tr>
-				<td>
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=850px>
-		<tr>
-			<td align=center width=850px>
-				<center>
-					<td><img class="round" style="width:850px" src="./resources/artemis.png"/></td>
-				</center>
-			</td>
-		</tr>
-	</table>
-	<table align=center width=850px>
-		<center>
-			<tr>
-				<td>
-					Short description if wanted
-				</td>
-			</tr>
-		</center>
-	</table>
-	<table align=center width=800px>
-		<br>
-		<tr><center>
-			<span style="font-size:28px">&nbsp;<a href='https://github.com/richzhang/webpage-template'>[GitHub]</a>
-			</center>
-		</span>
-	</table>
-	<br>
-	<hr>
-	<table align=center width=450px>
-		<center><h1>Paper and Supplementary Material</h1></center>
-		<tr>
-			<td><a href=""><img class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
-			<td><span style="font-size:14pt">F. Author, S. Author, T. Author.<br>
-				<b>Creative and Descriptive Paper Title.</b><br>
-				In Conference, 20XX.<br>
-				(hosted on <a href="">ArXiv</a>)<br>
-				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
-				<span style="font-size:4pt"><a href=""><br></a>
-				</span>
-			</td>
-		</tr>
-	</table>
-	<br>
-
-	<table align=center width=600px>
-		<tr>
-			<td><span style="font-size:14pt"><center>
-				<a href="./resources/bibtex.txt">[Bibtex]</a>
-			</center></td>
-		</tr>
-	</table>
-	<table align=center width=850px>
-		<tr>
-			<td align=center width=850px>
-				<center>
-					<td><img class="round" style="width:850px" src="./resources/tmp.png"/></td>
-				</center>
-			</td>
-		</tr>
-	</table>
-
-	<hr>
-	<br>
-
-	<table align=center width=900px>
-		<tr>
-			<td width=400px>
-				<left>
-					<center><h1>Acknowledgements</h1></center>
-					This template was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project; the code can be found <a href="https://github.com/richzhang/webpage-template">here</a>.
-				</left>
-			</td>
-		</tr>
-	</table>
-
-<br>
+</script>
+              
 </body>
 </html>
-
+ 
