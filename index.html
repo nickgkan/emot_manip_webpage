@@ -128,12 +128,12 @@
 	  			  <tr>
 	  	              <td align=center width=140px>
 	  					<center>
-	  						<span style="font-size:24px"><a href="https://richzhang.github.io/">Andy Fang</a></span>
+	  						<span style="font-size:24px"><a href="https://zfang399.github.io/">Andy Fang</a></span>
 		  		  		</center>
 		  		  	  </td>
 	  	              <td align=center width=140px>
 	  					<center>
-	  						<span style="font-size:24px"><a href="https://www.cs.cmu.edu/~junyanz/">Nikolaos Gkanatsios</a></span>
+	  						<span style="font-size:24px"><a href="https://nickgkan.github.io/">Nikolaos Gkanatsios</a></span>
 		  		  		</center>
 		  		  	  </td>
 	  			  </tr>
@@ -144,7 +144,7 @@
 	  			  <tr>
 	  	              <td align=center width=240px>
 	  					<center>
-	  						<span style="font-size:22px">Code <a href='https://github.com/junyanz/interactive-deep-colorization'> [GitHub]</a></span>
+	  						<span style="font-size:22px">Code <a href='https://github.com/nickgkan/emotion_manipulation'> [GitHub]</a></span>
 		  		  		</center>
 		  		  	  </td>
 			  </table>
@@ -166,12 +166,12 @@
 
   		  <table align=center width=900px>
 	  		 	<center><h1>Abstract</h1></center>
-                   The view of a painting arouses multiple emotions, different for each person. We explore the relation between objective visual cues and subjective affective experiences with the training of an expert model that is able to both classify and alter the emotional effect of visual artworks. First, we train a standard sentiment classifier in a multi-label fashion. Then, we gain insight by i) visualizing gradients to map the emotion back to image regions and ii) statistically analyzing humans' textual descriptions of their feelings about each painting. We discover that although the visual cues often focus on situations or facial expressions, people rely on memories and impression, the latter mostly activated by color patterns. Motivated by this analysis, we train an Energy-Based Model (EBM) to manipulate the emitted emotions of a painting. During training, our model learns both to apply color transformations to minimize the energy of the target class and to contrast images from different emotion classes. In inference, the EBM is given an image and a target emotion and iteratively updates the image to maximize the desired emotional effect. We demonstrate the effectiveness of our approach using absolute metrics, a human evaluation and a qualitative analysis.
+                   The view of a painting arouses multiple emotions, different for each person. We explore the relation between objective visual cues and subjective affective experiences with the training of an expert model that is able to both classify and alter the emotional effect of visual artworks. First, we train a standard sentiment classifier in a multi-label fashion. Then, we gain insight by i) visualizing gradients to map the emotion back to image regions and ii) statistically analyzing humans' textual descriptions of their feelings about each painting. We discover that although the visual cues often focus on situations or facial expressions, people rely on memories and impression, the latter mostly activated by color patterns. Motivated by this analysis, we train an Energy-Based Model (EBM) to manipulate the emitted emotions of a painting. During training, our model learns both to apply color transformations to minimize the energy of the target class and to contrast images from different emotion classes. In inference, the EBM is given an image and a target emotion and iteratively updates the image to maximize the desired emotional effect. We demonstrate the effectiveness of our approach with a qualitative analysis.
                    <br>
 		  <hr>
 
   		  <table align=center width=900px>
-	  		 	<center><h1>Demo Video</h1></center>
+	  		 	<center><h1>Video Presentation</h1></center>
   			  <tr>
 <!--   	              <td width=400px>
   					<center>
@@ -190,19 +190,18 @@
                 </tr>
   		  </table>
 
-        <center><a href="https://www.dropbox.com/s/mfi66auuv7qzyx0/iColor_release.mp4?dl=0">mp4</a></center>
   		  <br>
 		  <hr>
 
         <table align=center width=900px>
             <center><h1>Introduction</h1></center>
-            What do people feel when admiring an artwork? Are some pixels more attractive given the psychological status of a human? How can we edit an artwork to intensify a desired emotion? We address these questions from a computer vision perspective by learning to classify and manipulate the emotional effects of paintings. Our work steps towards bridging artificial and emotional intelligence and can have immediate application on assistive digital art. For example, designers could consult our emotion-aware model towards more appealing web pages, eye-capturing advertisements and school-book covers and art that could motivate kids to study and discuss. Another face of the same coin is emotion-based prediction: how would people react to an image, what actions could a painting inspire?
+            What do people feel when admiring an artwork? Are some pixels more attractive given the psychological status of a human? How can we edit an artwork to intensify a desired emotion? We address these questions from a computer vision perspective by learning to classify and manipulate the emotional effects of paintings. Our work steps towards bridging artificial and emotional intelligence and can have immediate application on assistive digital art. For example, designers could consult our emotion-aware model towards more appealing web pages, eye-capturing advertisements and school-book artwork that could motivate kids to study and discuss. Another face of the same coin is emotion-based prediction: what actions could a painting inspire?
             <br><br>
-            Reasoning about emotions directly from visual stimuli is a challenging task. First, emotions are subjective. For example, in Fig. 1, there are diverse annotations for the same paintings. This can be attributed to the psychological status of humans, as well as their background, experiences and personality. Another challenge is focus: there are no ground-truth salient parts annotated, as is the situation in object detection for instance. In fact, in the view of a painting, humans may focus on objects, e.g. the ``priest'' and the ``table'' in Fig 1, colors, background, e.g. ``sky ... getting darker'', or even memories, e.g. ``remind me of the fall''.
+            Reasoning about emotions directly from visual stimuli is a challenging task. First, emotions are subjective. For example, in Fig. 1, there are diverse annotations for the same painting. This can be attributed to the psychological status of humans, as well as their background, experiences and personality. Another challenge is focus: there are no ground-truth salient parts annotated, contrary to object detection for instance. In fact, in the view of a painting, humans may focus on objects, e.g. the "table" in Fig 1, colors, background, e.g. "sky ... getting darker", or even memories, e.g. "remind me of the fall".
             <br><br>
-            While emotion classification from images can be tackled as a multi-label problem due to co-existing labels, an important question is where this classifier should focus on. We attempt to answer this question by examining the classifier's gradients \cite{gradcam_iccv_2017} directly. We notice that, different from humans, typical classifiers \cite{ResNet_cvpr_2016} focus mostly on situations, expressions and objects in the foreground; no colors or memories. Thus, manipulating these paintings without any contraints, e.g. training a generative models from scratch, may get stuck in altering parts that are either hard to modify and still result in realistic images, e.g. facial expressions, or less salient for humans.
+            While emotion classification from images can be tackled as a multi-label problem due to co-existing labels, an important question is where this classifier should focus on. We attempt to answer this question by examining the classifier's gradients [12] directly. We notice that, different from humans, typical classifiers [4] focus mostly on situations, expressions and objects in the foreground; no colors or memories. Thus, manipulating these paintings without any contraints, e.g. training a generative model from scratch, may get stuck in altering parts that are either hard to modify realistically, e.g. facial expressions, or are less salient for humans.
             <br><br>
-            In this work we are mainly interested in three aspects: 1. train deep networks to classify emotions from paintings; 2. study where these networks ``look'' at to identify specific regions of the image that convey specific emotions; 3. alter the emotion of painting by learning to edit particular characteristics. To this end, we first finetune ResNet~\cite{ResNet_cvpr_2016} on our set of emotion classes in a multi-label scheme. Then, we employ Grad-CAM~\cite{gradcam_iccv_2017} to highlight the most salient image regions for any given emotion label. Lastly, we train an Energy-based Model~\cite{EBMclassifier_iclr_2020} (EBM) and use Langevin Dynamics~\cite{LangevinDynamics_icml_2011} to apply minimal color edits on the image and minimize an energy functional conditioned on the emotion. We experiment on the recently introduced ArtEmis dataset~\cite{achlioptas2021artemis}, where we evaluate qualitatively and quantitatively on the above setups. Our key contributions are a novel, color-conditioned art-emotion manipulation EBM, as well as the first qualitative analysis and interpretation of painting-to-emotion classifiers.
+            In this work we are mainly interested in three aspects: 1. train deep networks to classify emotions from paintings; 2. study where these networks "look" at to identify specific regions of the image that convey specific emotions; 3. alter the emotion of painting by learning to edit particular characteristics. To this end, we first finetune [4] on our set of emotion classes in a multi-label scheme. Then, we employ Grad-CAM [12] to highlight the most salient image regions for any given emotion label. Lastly, we train an Energy-based Model [3] (EBM) to apply minimal color edits on the image and minimize an energy functional conditioned on the emotion. We evaluate our approach on the recently introduced ArtEmis dataset [1]. Our key contributions are a novel, color-conditioned art-emotion manipulation EBM, as well as the first qualitative analysis and interpretation of painting-to-emotion classifiers.
             <br><br>
             <table align=center width=1250px>
                 <tr>
@@ -226,9 +225,9 @@
 
         <table align=center width=900px>
             <center><h1>Related work</h1></center>
-            <b>Sentiment analysis</b> has been a popular task in the natural language processing domain \cite{Medhat2014SentimentAA}, yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification~\cite{Mohammad2018WikiArtEA,Kim2018BuildingEM} or emotion-conditioned captioning~\cite{achlioptas2021artemis}. We are the first to explore emotion-conditioned editing of images, especially art.
+            <b>Sentiment analysis</b> has been a popular task in the natural language processing domain [9], yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification [10,6] or emotion-conditioned captioning [1]. We are the first to explore emotion-conditioned editing of images, especially art.
             <br><br>
-            <b>Generative models</b>: On a technical aspect, our work lies close to style transferring~\cite{Karras2019ASG} and implicit conditional generation~\cite{Du2019ImplicitGA} with EBMs. However, current style transferring approaches attempt to change what is ``seen''. For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups \cite{Mordatch2018ConceptLW, Li2020EnergyBasedMF}, more rarely on real images \cite{Du2020ImprovedCD,Du2019ImplicitGA} and never on unconstrained images, such as paintings, that may not even respect physical laws.
+            <b>Generative models</b>: On a technical aspect, our work lies close to style transferring [5] and implicit conditional generation [7] with EBMs. However, current style transferring approaches attempt to change what is "seen". For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups [11,7], more rarely on real images [2,8] and never on unconstrained images, such as paintings, that may not even respect physical laws.
 		</table>
         <hr>
 
@@ -245,7 +244,7 @@
             <center>
                 <tr>
                     <td>
-                        Figure 2: <b>Left</b>: Class distribution on ArtEmis dataset~\cite{achlioptas2021artemis}. <b>Right</b>: Usage of color language per emotion on the same dataset.
+                        Figure 2: <b>Left</b>: Class distribution on ArtEmis dataset [1]. <b>Right</b>: Usage of color language per emotion on the same dataset.
                     </td>
                 </tr>
             </center>
@@ -253,15 +252,15 @@
 
         <table align=center width=900px>
             <center><h1>Approach</h1></center>
-            <b>Classification</b>: We build our classifier on ImageNet-pretrained ResNet~\cite{ResNet_cvpr_2016}. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
+            <b>Classification</b>: We build our classifier on ImageNet-pretrained ResNet [4]. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
             <br><br>
-            <b>Visualization</b> We use Grad-CAM~\cite{gradcam_iccv_2017} to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
+            <b>Visualization</b> We use Grad-CAM [12] to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
             <br><br>
             <b>Emotion manipulation</b> Energy-Based Models (EBMs) are a family of networks that output a scalar energy value $E_{\theta}(x)$ which measures the combatibility of the input $x$ and some constraints. Inspired by physics, where stable systems lie on smooth local optima of an energy function, the smaller the EBM output, the better the input satisfies the imposed constraints. During training, the EBM learns the positive data distribution $p_{\theta}(x) \propto e^{-E_{\theta}(x)}$ by minimizing the loss
             \begin{equation}
                 \mathcal{L} = \mathbb{E}_{x^{+} \sim p_D}E_{\theta}(x^{+}) - \mathbb{E}_{x^{-} \sim p_{\theta}}E_{\theta}(x^{-})
             \end{equation}
-            where $x^{+}$ a positive sample for the true data distribution $p_D$ and $x^{-}$ a negative sample drawn from the learned distribution $p_{\theta}$. To sample from $p_{\theta}$, we start from an initial estimate $x^0$ and refine using Langevin Dynamics~\cite{LangevinDynamics_icml_2011}:
+            where $x^{+}$ a positive sample for the true data distribution $p_D$ and $x^{-}$ a negative sample drawn from the learned distribution $p_{\theta}$. To sample from $p_{\theta}$, we start from an initial estimate $x^0$ and refine using Langevin Dynamics [13]:
             \begin{equation}
                 x^{k+1} = x^{k} -\lambda \nabla_x E_{\theta}(x^{k})
             \end{equation}
@@ -409,40 +408,59 @@
   			  <tr>
   	              <td width=400px>
   					<left>
-	  		  <center><h1>Related and Concurrent Work</h1></center>
-	  		  		<span style="font-size:24px"><center><b> Automatic Colorization with Deep Networks </b> </center></span><br>
+	  		  <center><h1>References</h1></center>
 
-					R. Zhang, P. Isola, A. A. Efros. <b>Colorful Image Colorization.</b> In ECCV, 2016. <a href="https://arxiv.org/abs/1603.08511">[PDF]</a><a href="http://richzhang.github.io/colorization/"> [Website]</a><a href="http://demos.algorithmia.com/colorize-photos/"> [Demo]</a></br>
-
-					<br>
-
-					G. Larsson, M. Maire, and G. Shakhnarovich. <b>Learning Representations for Automatic Colorization.</b> In ECCV, 2016. <a href="http://arxiv.org/pdf/1603.06668.pdf"> [PDF]</a><a href="http://people.cs.uchicago.edu/~larsson/colorization/"> [Website]</a></br>
-
-					<br>
-
-					S. Iizuka, E. Simo-Serra, and H. Ishikawa. <b>Let there be Color!: Joint End-to-end Learning of Global and Local Image Priors for Automatic Image Colorization with Simultaneous Classification.</b> In SIGGRAPH, 2016. <a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/data/colorization_sig2016.pdf"> [PDF]<a href="http://hi.cs.waseda.ac.jp/~iizuka/projects/colorization/"> [Website]</a></a></br>
-
-					<br>
-
-	  		  		<span style="font-size:24px"><center><b> User Interaction with Deep Networks </b> </center></span><br>
-
-					P. Isola, J.Y. Zhu, T. Zhou, A. A. Efros. <b>Image to Image Translation with Conditional Adversarial Networks.</b> In CVPR, 2017. <a href="https://arxiv.org/pdf/1611.07004.pdf"> [PDF]</a><a href="https://phillipi.github.io/pix2pix/"> [Website]</a><a href="https://affinelayer.com/pixsrv/"> [Demo]</a></br>
-
-					<br>
-
-					P. Sangkloy, J. Lu, C. Fang, F. Yu, J. Hays. <b>Scribbler: Controlling Deep Image Synthesis with Sketch and Color.</b> In CVPR, 2017. <a href="http://scribbler.eye.gatech.edu/paper.pdf"> [PDF]</a><a href="http://scribbler.eye.gatech.edu/"> [Website]</a></br>
-
-					<br>
-
-					J.Y. Zhu, P. Krähenbühl, E. Shechtman, A. A. Efros. <b>Generative Visual Manipulation on the Natural Image Manifold.</b> In ECCV, 2016. <a href="https://arxiv.org/pdf/1609.03552.pdf"> [PDF]</a><a href="http://people.eecs.berkeley.edu/~junyanz/projects/gvm/index.html"> [Website]</a></br>
-
-					<br>
-
-					K. Frans. <b>Outline Colorization through Tandem Adversarial Networks.</b> In Arxiv, 2017. <a href="https://arxiv.org/abs/1704.08834">[PDF]</a><a href="http://color.kvfrans.com/"> [Demo]</a></br>
-
-					<br>
-
-					Preferred Networks, Inc. <b>PaintsChainer.</b><a href="https://paintschainer.preferred.tech/"> [Demo]</a>
+                        [1] Panos Achlioptas, Maks Ovsjanikov, Kilichbek Haydarov, Mohamed Elhoseiny, and Leonidas Guibas.
+                        <b>Artemis: Affective language for art.</b>
+                        CVPR, 2021.[2]
+                        <br><br>
+                        Yilun Du, Shuang Li, J. Tenenbaum, and Igor Mordatch.
+                        <b>Improved contrastive divergence training of energy based models.</b>
+                        ArXiv, abs/2012.01316, 2020.
+                        <br><br>
+                        [3] Will Grathwohl, Kuan-Chieh Wang, Jorn-Henrik Jacobsen, David Duvenaud, Mohammad Norouzi,and Kevin Swersky.
+                        <b>Your classifier is secretly an energy based model and you should treat it like one.</b>
+                        ICLR, 2020.
+                        <br><br>
+                        [4] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+                        <b>Deep residual learning for image recognition.</b>
+                        CVPR, 2016.
+                        <br><br>
+                        [5] Tero Karras, S. Laine, and Timo Aila.\
+                        <b>A style-based generator architecture for generative adversarial networks.</b>
+                        CVPR, 2019.
+                        <br><br>
+                        [6] H. Kim, Yeong-Seok Kim, S. Kim, and In-Kwon Lee.
+                        <b>Building emotional machines: Recognizing image emotions through deep neural networks.</b>
+                        IEEE Transactions on Multimedia, 20, 2018.
+                        <br><br>
+                        [7] Shaomeng Li, Yilun Du, Gido M. van de Ven, A. Torralba, and Igor Mordatch.
+                        <b>Energy-based models for continual learning.</b>
+                        ArXiv, abs/2011.12216, 2020.
+                        <br><br>
+                        [8] Yilun Du and Igor Mordatch.
+                        <b>Implicit generation and modeling with energy based models.</b>
+                        NeurIPS, 2019.
+                        <br><br>
+                        [9] Walaa Medhat, Ahmed Hassan, and H. Korashy.
+                        <b>Sentiment analysis algorithms and applications: A survey.</b>
+                        Ain Shams Engineering Journal, 5:1093–1113, 2014.
+                        <br><br>
+                        [10] Saif M. Mohammad and Svetlana Kiritchenko.
+                        <b>Wikiart emotions: An annotated dataset of emotions evoked by art.</b>
+                        LREC, 2018.
+                        <br><br>
+                        [11] Igor Mordatch.
+                        <b>Concept learning with energy-based models.</b>
+                        ICLR, 2018.
+                        <br><br>
+                        [12] Ramprasaath R. Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, and Dhruv Batra.
+                        <b>Grad-cam: Visual explanations from deep networks via gradient-based localization.</b>
+                        ICCV, 2017.
+                        <br><br>
+                        [13] Max Welling and Yee Whye Teh.
+                        <b>Bayesian learning via stochastic gradient langevin dynamics.</b>
+                        ICML, 2011.
 
 			</left>
 		</td>
@@ -450,16 +468,6 @@
 		</table>
 		<hr>
 
-  		  <table align=center width=1100px>
-  			  <tr>
-  	              <td width=400px>
-  					<left>
-	  		  <center><h1>Acknowledgements</h1></center>
-				We thank members of the Berkeley Artificial Intelligence Research Lab for helpful discussions. We also thank the participants in our user study, along with Aditya Deshpande and Gustav Larsson for providing images for comparison. This work has been supported, in part, by NSF SMA-1514512, a Google Grant, BAIR, and a hardware donation by NVIDIA.
-			</left>
-		</td>
-			 </tr>
-		</table>
 
 		<br><br>
 
