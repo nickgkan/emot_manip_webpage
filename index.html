@@ -228,8 +228,10 @@
             <b>Sentiment analysis</b> has been a popular task in the natural language processing domain [9], yet rare in computer vision, due to its subjective and non-local nature. Prior literature based on visual art considers only sentiment classification [10,6] or emotion-conditioned captioning [1]. We are the first to explore emotion-conditioned editing of images, especially art.
             <br><br>
             <b>Generative models</b>: On a technical aspect, our work lies close to style transferring [5] and implicit conditional generation [7] with EBMs. However, current style transferring approaches attempt to change what is "seen". For example, in style transferring between paintings of two artists, we can always locate characteristics of each painter in the image. This is not true for emotions, where even humans cannot locate precisely the specific areas that arouse a given emotion. At the same time, EBMs are usually applied on synthetic setups [11,7], more rarely on real images [2,8] and never on unconstrained images, such as paintings, that may not even respect physical laws.
-		</table>
-        <hr>
+            <br><br>
+            <b>ArtEmis Dataset</b>: Introduced in [1], ArtEmis offers annotations for emotions, artists, styles and human users' comments about each image. There are 10 emotion types in our classification setup, the distribution of which is plotted in Fig. 2 We also use comments to mine common patterns from text. Specifically, as we show in Fig. 2, for all classes, humans often use color language to describe their emotions, e.g. "the colors are very awe-inspiring".
+		
+        </table>
 
         <table align=center width=1250px>
             <tr>
@@ -249,6 +251,7 @@
                 </tr>
             </center>
         </table>
+        <hr>
 
         <table align=center width=900px>
             <center><h1>Approach</h1></center>
@@ -270,135 +273,125 @@
 
         <hr>
 
- 		<center><h1>Results on Legacy Photos</h1></center>
+        <center><h1>Results on Emotion Classification</h1></center>
+        <b>Classification</b> waiting for a plot
+        <br><br>
 
-         <b>Dataset</b>: We train and evaluate our approach on ArtEmis dataset [1]. ArtEmis offers annotations for emotions, artists, styles and human users' comments about each image. We use all 10 emotion types in our classification setup. We plot their distribution in Fig. 2 We also use comments to mine common patterns from text. Specifically, as we show in Fig. 2, for all classes, humans often use color language to describe their emotions, e.g. "the colors are very awe-inspiring".
-		<br>
-  		  <table align=center width=600px>
-  		    <tr>
-              <td align=center width=600px>
-        		<!-- <a href="./index_files/legacy_v4.jpg"><img class="rounded"  src = "./index_files/legacy_v4_small.jpg" width = "800px"></a><br> -->
-        		<a href="http://colorization.eecs.berkeley.edu/siggraph/legacy_photos/"><img class="rounded"  src = "./index_files/legacy_v4_small.jpg" width = "800px"></a><br>
-				<span style="font-size:16px"></span>
-			  </td>
-			</tr>
-  			  <!-- <tr> -->
-  	              <td align=center width=600px>
-  					<center>
-  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/legacy_photos/'>Selected Legacy Photos</a></span>
-	  		  		</center>
-	  		  	  </td>
-  		  	  <!-- </tr> -->
-		  </table>
+        <b>Visualizations</b> Below we show the Grad-CAM [12] visualizations of the classification model on unseen images in the test set. On each row we show two examples, where each example shows the original image (left) and the grad-CAM visualization (right) conditioned on the emotion label (caption). We show reasonable results in the first four rows and show results that's not interpretable in the last row. This suggests that the model learns to ground most of its decisions on the most salient image region correlated with the emotion label, but it also makes mistakes where it focuses on regions less correlated with the emotion label.
+
+        <table align=center width=1250px>
+            <tr>
+                <td align=center width=1250px>
+                    <center>
+                        <td><img class="round" style="width:1250px" src="./resources/gradcam.png"/></td>
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+        <hr>
+
+ 		<center><h1>Results on Emotion Manipulation</h1></center>
+
+		We apply our EBM to unseen images in the test set to qualitatively evaluate the model's ability to enhance the target emotion. The target emotion is <i>contentment</i>, and the input images are all images without the target emotion label. Below are some successful samples of emotion manipulation. We show the original image (left), edited image (middle), and the editing process (right).
+        
+        <center>
+          <br>
+		  <div>
+		  	  <figure style="margin: 0;">
+		  	  	<figcaption>Original Image &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	  	Edited Image &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	    Editing Process &nbsp &nbsp</figcaption>
+			    <img src="./resources/vis/good_before_0.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/good_after_0.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/good_move_0.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  </figure>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/good_before_1.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/good_after_1.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/good_move_1.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/good_before_2.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/good_after_2.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/good_move_2.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/good_before_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/good_after_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/good_move_3.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/good_before_4.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/good_after_4.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/good_move_4.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+			  <br>
+		  </div>
+		</center>
+
+		We also show some failure samples below. We show the original image (left), edited image (middle), and the editing process (right). Compared to the successful ones, we see that our EBM fails when the input image is too abstract to start with, or contains a great amount of emotions opposite to the target emotion. We conjecture it is hard to enhance the target emotion in those cases.
+
+        <center>
+          <br>
+		  <div>
+		  	  <figure style="margin: 0;">
+		  	  	<figcaption>Original Image &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	  	Edited Image &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	    Editing Process &nbsp &nbsp</figcaption>
+			    <img src="./resources/vis/bad_before_0.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/bad_after_0.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/bad_move_0.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  </figure>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/bad_before_1.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/bad_after_1.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/bad_move_1.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/bad_before_2.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/bad_after_2.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/bad_move_2.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+
+		  <div>
+			  <img src="./resources/vis/bad_before_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+
+			  <img src="./resources/vis/bad_after_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  
+			  <img src="./resources/vis/bad_move_3.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  <br>
+		  </div>
+		</center>
 
 		<br>
 		<hr>
-
- 		<center><h1>Additional Results</h1></center>
-
- 		We show all of the results from our user study. Each user spent just 1 minute on each image. Each of the 28 users was given minimal training (short 2 minute explanation, and a few questions), and given 10 images to colorize. We show all 280 examples in the link below.
-
- 		This is an extension of Figures 4 & 5 of our paper. Please see Section 4.2 of our paper for additional details.
-
-  		  <table align=center width=600px>
-  		    <tr>
-              <td align=center width=600px>
-        		<a href="http://colorization.eecs.berkeley.edu/siggraph/user_study/"><img class="rounded"  src = "./index_files/imagenet_showcase_small.jpg" width = "800px"></a><br>
-        		<!-- <a href="./index_files/imagenet_showcase.jpg"><img class="rounded"  src = "./index_files/imagenet_showcase_small.jpg" width = "800px"></a><br> -->
-				<span style="font-size:16px"></span>
-			  </td>
-			</tr>
-  			  <tr>
-  	              <td align=center width=600px>
-  					<center>
-  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/user_study/'> Full User Study Results</a></span>
-	  		  		</center>
-	  		  	  </td>
-  		  	  </tr>
-		  </table>
-		<br>
-
- 		We show additional examples of our network incorporating global histogram information. Please see Sections 3.3 and 4.4 for additional details. This is an extension of Figure 9 in our paper.
-
-  		  <table align=center width=600px>
-  		    <tr>
-              <td align=center width=600px>
-        		<!-- <a href="./index_files/lab_all_figures45k.jpg"><img class="rounded" src = "./index_files/lab_all_figures45k_small.jpg" width = "800px"></a><br> -->
-        		<a href="http://colorization.eecs.berkeley.edu/siggraph/global_transfer/"><img class="rounded" src = "./index_files/lab_all_figures45k_small.jpg" width = "800px"></a><br>
-				<span style="font-size:16px"></span>
-			  </td>
-			</tr>
-  			  <tr>
-  	              <td align=center width=600px>
-  					<center>
-  						<span style="font-size:28px"><a href='http://colorization.eecs.berkeley.edu/siggraph/global_transfer/'>Random Histogram Transfer Results</a></span>
-	  		  		</center>
-	  		  	  </td>
-  		  	  </tr>
-		  </table>
-		<br>
-
-<!--   		  <table align=center width=600px>
-  		  	<tr>
-  	              <td align=center width=300px>
-  					<center>
-  						<span style="font-size:22px"><a href='http://colorization.eecs.berkeley.edu/siggraph/global_transfer/'>Histogram Transfer Results</a></span>
-	  		  		</center>
-	  		  	  </td>
-	  		</tr>
-		  </table>
- -->
-		  <hr>
-
- 		<center><h1>Try the network</h1></center>
-		  <!-- The GitHub page has scripts for fetching our model, and a slightly modified version of Caffe which does color pre-processing (if so desired). We recommend going to the <a href='https://github.com/richzhang/splitbrainauto'>GitHub</a> page and following instructions in the readme. -->
-
-  		  <table align=center width=900px>
-  			  <tr>
-  	                <td align=center width=900px>
-  					<center>
-						  <td><a href='https://github.com/junyanz/interactive-deep-colorization'><img class="round" style="width:900px" src="./index_files/network4.jpg"/></a></td>
-	  		  		</center>
-	  		  		</td>
-			  </tr>
-		  </table>
-
-  		  <table align=center width=800px>
-			  <tr><center>
-				<span style="font-size:28px">GitHub <a href='https://github.com/junyanz/interactive-deep-colorization'>[Official Repository]</a>
-				<span style="font-size:28px"><a href='https://github.com/richzhang/colorization-pytorch'>[PyTorch Training]</a>
-			  <br>
-			  </center></tr>
-			  <!-- <tr><center> -->
- 			<!-- <span style="font-size:28px"><a>&nbsp;Model: [Prototxt] Weights: [Unrescaled] [Rescaled]</a></span> -->
-			  <!-- </center></tr> -->
-		  </table>
-
-  		  <br>
-		  <hr>
-
-  		  <table align=center width=540 px>
-	 		<center><h1>Paper</h1></center>
-  			  <tr>
-				  <td><a href="https://arxiv.org/abs/1705.02999"><img class="layered-paper-big" style="height:175px" src="./index_files/page1.png"/></a></td>
-				  <td><span style="font-size:12pt">R. Zhang*, J.Y. Zhu*, P. Isola, <br> X. Geng, A. S. Lin, T. Yu, A. A. Efros.</span><br>
-				  <b><span style="font-size:12pt">Real-Time User-Guided Image Colorization with Learned Deep Priors.</b></span><br>
-				  <span style="font-size:12pt">In SIGGRAPH, 2017. (hosted on <a href="https://arxiv.org/abs/1705.02999">arXiv</a>)</span></a>
-				  <span style="font-size:4pt"><a href=""><br></a>
-				  </span>
-				  </td>
-  	              </td>
-              </tr>
-  		  </table>
-		  <br>
-
-		  <table align=center width=600px>
-			  <tr>
-				  <td><span style="font-size:24pt"><center>
-				  	<a href="./index_files/bibtex_siggraph2017.txt">[Bibtex]</a>
-  	              </center></td>
-              </tr>
-  		  </table>
 
   		  <br>
 		  <hr>
