@@ -244,7 +244,7 @@
             <center>
                 <tr>
                     <td>
-                        Figure 2: <b>Left</b>: Class distribution on ArtEmis dataset [1]. <b>Right</b>: Usage of color language per emotion on the same dataset.
+                        Figure 2: <b>Left</b>: Class distribution on ArtEmis dataset [1]. <b>Right</b>: Usage of color language per emotion on the same dataset. The fact that people often acknowledge color pattern as emotion-triggering motivates us to learn to apply color-based transformations to the images
                     </td>
                 </tr>
             </center>
@@ -252,7 +252,7 @@
 
         <table align=center width=900px>
             <center><h1>Approach</h1></center>
-            <b>Classification</b>: We build our classifier on ImageNet-pretrained ResNet [4]. Specifically, we replace the last fully-connected layer with a new one for prediction of our classes, 10 in number. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layer are kept frozen throughout the whole layer. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
+            <b>Classification</b>: We build our classifier on ImageNet-pretrained ResNet [4]. Specifically, we replace the last fully-connected layer with a new one for our 10 emotion classes. We use ResNet-34 for this task and freeze all blocks except the last one. Batch normalization layers are kept frozen throughout the whole network. We use Adam optimizer with learning rate 0.001 and a batch size of 128. Our network converges in 15 epochs.
             <br><br>
             <b>Visualization</b> We use Grad-CAM [12] to visualize the image parts that maximize the activation of a target emotion. To do this, we first perform a forward pass through our classifier and obtain a score for the target emotion. We want to maximize this activation, so we can consider that our loss is the negative (logarithm) of this activation. Then, we backpropagate to compute the gradients of this loss wrt the image. The gradients are maximized on locations that are important to attend to when inferring the target emotion.
             <br><br>
@@ -264,16 +264,15 @@
             \begin{equation}
                 x^{k+1} = x^{k} -\lambda \nabla_x E_{\theta}(x^{k})
             \end{equation}
-            After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic ``negatives'' using Eq. 2.
+            After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic "negatives" using Eq. 2.
             <br><br>
-            To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations, the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq. 1. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
+            To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations and the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq. 1. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
 
         <hr>
 
  		<center><h1>Results on Legacy Photos</h1></center>
 
-		We trained our system on 1.3M color photos, which were made grayscale "synthetically" (by removing the color components). Here, we show some examples on <i>legacy</i> grayscale photographs. This is Figure 10 in our full paper.
-
+         <b>Dataset</b>: We train and evaluate our approach on ArtEmis dataset [1]. ArtEmis offers annotations for emotions, artists, styles and human users' comments about each image. We use all 10 emotion types in our classification setup. We plot their distribution in Fig. 2 We also use comments to mine common patterns from text. Specifically, as we show in Fig. 2, for all classes, humans often use color language to describe their emotions, e.g. "the colors are very awe-inspiring".
 		<br>
   		  <table align=center width=600px>
   		    <tr>
