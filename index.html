@@ -299,6 +299,7 @@
         <br><br>
 
         <b>Visualizations</b> Below we show the Grad-CAM [12] visualizations of the classification model on unseen images in the test set. On each row we show two examples, where each example shows the original image (left) and the grad-CAM visualization (right) conditioned on the emotion label (caption). We show reasonable results in the first four rows and show results that's not interpretable in the last row. This suggests that the model learns to ground most of its decisions on the most salient image region correlated with the emotion label, but it also makes mistakes where it focuses on regions less correlated with the emotion label.
+        Note that all images are padded here so that they have same height and width (hence some black areas).
 
         <table align=center width=1250px>
             <tr>
@@ -330,6 +331,7 @@
  		<center><h1>Results on Emotion Manipulation</h1></center>
 
 		We apply our EBM to unseen images in the test set to qualitatively evaluate the model's ability to enhance the target emotion. The target emotion is <i>contentment</i>, and the input images are all images without the target emotion label. Below are some successful samples of emotion manipulation. We show the original image (left), edited image (middle), and the editing process (right). The model learns to edit colors of saliant regions of the image and enhance the contentment emotion.
+        For this task, images are reshaped to $64\times64$.
         
         <center>
           <br>
