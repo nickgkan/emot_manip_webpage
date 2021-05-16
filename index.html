@@ -429,7 +429,16 @@
 
 		<br>
 		<hr>
-
+        <table align=center width=900px>
+            <center><h1>Conclusions and Future Steps</h1></center>
+            In this project we classify, interpret and manipulate the emotions evoked by paintings.
+            Our manipulation network is a lightweight energy-based model that does not need a discriminator (contrary to GANs) or exhaustive tuning to work.
+            We display a multitude of qualitative results to examine the capability of our model to iteratively update paintings in a way that i) <b>at every step the outcome is a valid painting</b>, ii) the <b>shape is preserved</b>, only colors change and iii) <b>the effect of target emotion is maximized</b>.
+            <br><br>
+            However, this is still an open problem. On a technical aspect, we are able to manipulate relatively small images ($64\times64$) and we show results for a specific and frequent emotion. Training on larger images and more emotions is a natural next step. At the same time, more rigorous evaluation methods are needed.
+            On the research side, we focus on modifying colors only. While this restriction is motivated by the statistics of the language humans use, color is not only stimuli for emotion. Future works should explore the idea of uncostrained manipulation. Our preliminary experiments during this project indicate that this is an extremely challenging task to solve.
+            Lastly, if humans often refer to colors and we are able to modify images using this information, could we edit images based on other similar cues? Language-guided image editing can be an exciting future direction.
+        </table>
   		  <br>
 		  <hr>
 		  	
