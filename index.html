@@ -150,17 +150,19 @@
 			  </table>
           </center>
 
-  		  <table align=center width=900px>
-  			  <tr>
-  	              <td width=400px>
-  					<center>
-  	                	<img class="rounded" src = "./index_files/teaser_v3.jpg" height="275px"></img>
-  	                	<br>
-					</center>
-  	              </td>
-  	              </tr>
-  	              </table>
-
+  		  <center>
+          <br>
+		  <div>
+		  	  <figure style="margin: 0;">
+		  	  	<figcaption>Original Image &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	  	Edited Image (add contentment) &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+		  	    Editing Process &nbsp &nbsp</figcaption>
+			    <img src="./resources/vis/good_before_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/good_after_3.png" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			    <img src="./resources/vis/good_move_3.gif" alt="{{hist}}" width="256" height="256" style="margin: 0px 30px 0px 0px;" >
+			  </figure>
+		  </div>
+		  </center>
   		  <br>
 		  <hr>
 
@@ -269,7 +271,7 @@
             \end{equation}
             After $K$ iterations, we obtain $x^{-}=x^{K}$. This formulation is intuitive: we follow the EBM's gradients wrt to the input to update the input in a way that minimizes the energy. This is what we described for visualization earlier. These artificially good samples as treated as negatives. At convergence, the EBM is able to produce very realistic "negatives" using Eq. 2.
             <br><br>
-            To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations and the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq. 1. We pick $K=20$ and $\lambda=10$ and use the same hyperparameters as in the classification experiment.
+            To incorporate the above formulation into our problem, we use ResNet-18 as an EBM. We train a separate energy model for each target emotion. During training, we sample positive examples from the dataset, i.e. images labeled with the target emotion. An open choice is how to sample negatives. Motivated by our visualizations and the fact that people often ground their emotions on colors, as well as the difficulty of image generation from scratch, we learn a colorization task. Specifically, we pick $x^0$ to be the grayscale version of the positive samples, then we use the EBM to colorize it. Intuitively, the EBM should converge to the ground-truth image colors in order to minimize the energy, although there is colorization loss, i.e. we do not compare the learned and ground-truth colors at any point, we only contrast their energies. Lastly, we note that this colorization task itself is not sufficient in order to associate the energy with the emotion. For this reason, we also sample dataset images that are not labeled with the target emotion and treat them as negatives in Eq. 1. We pick $K=50$ and $\lambda=20$ and use the same hyperparameters as in the classification experiment.
 
         <hr>
 
@@ -309,11 +311,25 @@
         </table>
 
         <br>
+
+        Below we also show Grad-CAM visualizations of model's prediction the same image but conditioned on different emotion labels. We show the original image (left), and two Grad-CAM visualizations of two different labels (middle and right). We see that the model relies on different part of the image to inform its prediction of different emotions.
+
+        <table align=center width=1250px>
+            <tr>
+                <td align=center width=1250px>
+                    <center>
+                        <td><img class="round" style="width:1250px" src="./resources/gradcam2.png"/></td>
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+        <br>
         <hr>
 
  		<center><h1>Results on Emotion Manipulation</h1></center>
 
-		We apply our EBM to unseen images in the test set to qualitatively evaluate the model's ability to enhance the target emotion. The target emotion is <i>contentment</i>, and the input images are all images without the target emotion label. Below are some successful samples of emotion manipulation. We show the original image (left), edited image (middle), and the editing process (right).
+		We apply our EBM to unseen images in the test set to qualitatively evaluate the model's ability to enhance the target emotion. The target emotion is <i>contentment</i>, and the input images are all images without the target emotion label. Below are some successful samples of emotion manipulation. We show the original image (left), edited image (middle), and the editing process (right). The model learns to edit colors of saliant regions of the image and enhance the contentment emotion.
         
         <center>
           <br>
