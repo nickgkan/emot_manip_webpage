@@ -274,7 +274,26 @@
         <hr>
 
         <center><h1>Results on Emotion Classification</h1></center>
-        <b>Classification</b> waiting for a plot
+        <b>Classification</b> We evaluate our trained classifier on ArtEmis and get a mAP 55.01% on 10 classes. However, this accuracy is not equally distributed among classes, as can be seen in the next plots.
+        <br>
+        <table align=center width=1250px>
+            <tr>
+                <td align=center width=1250px>
+                    <center>
+                        <td><img class="round" style="width:1250px" src="./resources/cls_results.png"/></td>
+                    </center>
+                </td>
+            </tr>
+        </table>
+        <table align=center width=1250px>
+            <center>
+                <tr>
+                    <td>
+                        <b>Left</b>: Per-class average precision. We can see vast differences among classes. <b>Mid</b>: Distribution of correct answers: how the total number of correct detections is distributed among classes.. <b>Right</b>: True distribution of classes in ArtEmis. We can observe that the distribution of correct answers matches the label distribution, which suggests that i) there is bias and ii) our model is data-hungry.
+                    </td>
+                </tr>
+            </center>
+        </table>
         <br><br>
 
         <b>Visualizations</b> Below we show the Grad-CAM [12] visualizations of the classification model on unseen images in the test set. On each row we show two examples, where each example shows the original image (left) and the grad-CAM visualization (right) conditioned on the emotion label (caption). We show reasonable results in the first four rows and show results that's not interpretable in the last row. This suggests that the model learns to ground most of its decisions on the most salient image region correlated with the emotion label, but it also makes mistakes where it focuses on regions less correlated with the emotion label.
